@@ -32,7 +32,7 @@ class Messenger(untitled.Ui_MainWindow, QtWidgets.QMainWindow):
         dt = datetime.datetime.fromtimestamp(t)
         dt = dt.strftime('%H:%M:%S')
         self.textBrowser.append(dt + " " + message['name'])
-        self.textBrowser.append(message['text'])
+        self.textBrowser.append(message['readme'])
         self.textBrowser.append("")
 
     def get_message(self):
@@ -51,7 +51,7 @@ class Messenger(untitled.Ui_MainWindow, QtWidgets.QMainWindow):
         try:
             response = requests.post(f'{self.serv}/send', json={
                 'name': name,
-                'text': text})
+                'readme': text})
         except:
             self.textBrowser.append('Сервер недоступен')
             self.textBrowser.append("")

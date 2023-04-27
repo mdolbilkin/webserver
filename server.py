@@ -18,18 +18,18 @@ def send():
     data = request.json
     if not isinstance(data, dict):
         return flask.abort(400)
-    if set(data.keys()) != {'name', 'text'}:
+    if set(data.keys()) != {'name', 'readme'}:
         return flask.abort(400)
-    if 'name' not in data or 'text' not in data:
+    if 'name' not in data or 'readme' not in data:
         return flask.abort(400)
     name = data['name']
-    text = data['text']
+    text = data['readme']
     if not isinstance(name, str) or not isinstance(text, str) or name == "" or text == "":
         return flask.abort(400)
     message = {
         'time': time.time(),
         'name': name,
-        'text': text,
+        'readme': text,
     }
     db.append(message)
     return {'ok': True}
